@@ -7,7 +7,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-                git 'https://github.com/ps774/Automation.git'
+                git credentialsId: '28fa450b-4684-4e46-961a-ab5019994d58', url: 'https://github.com/ps774/Automation.git'
         }
         stage("Maven Build"){
             steps{
@@ -19,11 +19,11 @@ pipeline{
             steps{
                 sshagent(['tomcat-new']) {
                 sh """
-                    scp -o StrictHostKeyChecking=no target/myweb.war  ec2-user@34.201.66.57:/opt/tomcat9/webapps/
+                    scp -o StrictHostKeyChecking=no target/myweb.war  ec2-user@10.1.1.219:/opt/tomcat9/webapps/
                     
-                    ssh ec2-user@34.201.66.57 /opt/tomcat9/bin/shutdown.sh
+                    ssh ec2-user@10.1.1.219 /opt/tomcat9/bin/shutdown.sh
                     
-                    ssh ec2-user@34.201.66.57 /opt/tomcat9/bin/startup.sh
+                    ssh ec2-user@10.1.1.219 /opt/tomcat9/bin/startup.sh
                 
                 """
             }
