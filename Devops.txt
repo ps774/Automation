@@ -38,7 +38,7 @@ Devops workflow / Jenkins work flow :
 
 6. deployment ( tomcat ) ---->> dev/qa/uat/prod
 
-7. Test
+7. Test stage
 
 
 
